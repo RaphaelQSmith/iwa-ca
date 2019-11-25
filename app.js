@@ -1,4 +1,5 @@
 var http = require('http'),
+    path = require('path'),
     express = require('express'),
     fs = require('fs'),
     xmlParse = require('xslt-processor').xmlParse,
@@ -13,10 +14,8 @@ router.get('/', function(req,res){
 
     res.writeHead(200, {'Content-Type':'text/html'});
 
-    var xml = fs.readFileSync(, 'utf:8');
-    var xsl = fs.readFileSync(, 'utf:8');
-    // var xml = fs.readFileSync('PaddysCafe.xml','utf8');
-    // var xsl = fs.readFileSync('PaddysCafe.xsl','utf8');
+    var xml = fs.readFileSync("movies.xml", 'utf:8');
+    var xsl = fs.readFileSync("movies.xsl", 'utf:8');
 
     var doc = xmlParse(xml);
     var stylesheet = xmlParse(xsl);
