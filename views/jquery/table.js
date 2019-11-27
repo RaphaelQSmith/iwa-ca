@@ -1,13 +1,12 @@
-
 function draw_table(){
-    $("#table").empty();
+    $("#results").empty();
     $.getJSONuncached = function(url) {
         return $.ajax({
             url: url,
             type: 'GET',
             cache: false,
             success: function(html) {
-                $("#table").append(html);
+                $("#results").append(html);
             }
         });
     };

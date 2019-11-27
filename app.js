@@ -8,15 +8,16 @@ var http = require('http'),
 var router = express();
 var server = http.createServer(router);
 
+
 router.use(express.static(path.resolve(__dirname, 'views')));
 
-router.get('/', function(req,res){
+router.get('/get/html', function(req,res){
 
     res.writeHead(200, {'Content-Type':'text/html'});
 
-    var xml = fs.readFileSync("movies.xml", 'utf:8');
-    var xsl = fs.readFileSync("movies.xsl", 'utf:8');
-
+    var xml = fs.readFileSync("movies.xml", 'utf8');
+    var xsl = fs.readFileSync("movies.xsl", 'utf8');
+    
     var doc = xmlParse(xml);
     var stylesheet = xmlParse(xsl);
 
@@ -26,7 +27,7 @@ router.get('/', function(req,res){
 
 });
 
-server.listen(process.env.PORT || 3000, process.env.IP, function(){
+server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
     var addr = server.address();
-    console.log('Server is listening at: ', addr.address + ':' + addr.port)
+    console.log('Server is listening at: ', addr.address + ':' + addr.port);
 });
