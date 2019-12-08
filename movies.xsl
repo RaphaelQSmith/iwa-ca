@@ -6,6 +6,7 @@
         <table id="menuTable" class="thead-#EAE7DC table-hover col-lg-12" >
             <thead>
                 <tr bgcolor="#d8c3a5">
+                    <th></th>
                     <th>Title</th>
                     <th>Year</th>
                     <th>Genre</th>
@@ -14,7 +15,8 @@
             </thead>
               <tbody>
                 <xsl:for-each select="movielist/movie">
-                    <tr>
+                    <tr id="{position()}">
+                        <td align="center"><input name="item0" type="checkbox" /></td>
                         <td><xsl:value-of select="title"/></td>
                         <td><xsl:value-of select="year"/></td>
                         <td><xsl:value-of select="genre"/></td>
