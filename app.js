@@ -4,6 +4,7 @@ var http = require('http'),
     fs = require('fs'),
     xmlParse = require('xslt-processor').xmlParse,
     xsltProcess = require('xslt-processor').xsltProcess;
+    xml2js = require('xml2js');
 
 var router = express();
 var server = http.createServer(router);
@@ -49,7 +50,7 @@ router.post('/post/json', function(req, res) {
   function appendJSON(obj) {
     xmlFileToJs('movies.xml', function(err, result) {
       if (err) throw (err);
-      result.cafemenu.section[obj.sec_n].entree.push({'item': obj.item, 'price': obj.price}); 
+      result.movielist.movie.push({'title': obj.title, 'year': obj.year, 'genre': obj.genre, 'cast': obj.cast}); 
       jsToXmlFile('movies.xml', result, function(err) {
         if (err) console.log(err);
       })
